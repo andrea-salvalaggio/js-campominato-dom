@@ -74,11 +74,14 @@ main {
 }
 
 #container-wrapper,
-.square,
-.play-button {
+.square {
     border: 1px solid #000;
 }
 
 .square.active {
     background-color: #28acff;
+}
+
+.square.bomb {
+    background-color: #f92174;
 }
