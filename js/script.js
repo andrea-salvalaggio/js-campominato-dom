@@ -12,7 +12,7 @@
 // Richiamo il container della griglia tramite il suo id
 const wrapContainer = document.getElementById('container-wrapper');
 
-// Creo un array vuoto per i numeri randomici
+// Creo un array vuoto per i numeri randomici che andranno aggiunti alla blacklist
 const blackList = [];
 
 // L'utente clicca su un bottone che genererà una griglia di gioco quadrata.
@@ -28,10 +28,12 @@ playButton.addEventListener('click', function () {
     for (let i = 1; i < 101; i++) {
         const newSquare = createNewSquare();
 
-        const newRandomNumber = generateRandomNumber(blackList, 1, 100);
+        // Richiamo una variabile per aggiungere i numeri randomici alla blacklist
+        const newRandomNumber = generateRandomNumber(blackList, 1, 101);
+        blackList.push(newRandomNumber);
 
         // Aggiungo l'indice (i numeri) dentro al quadrato
-        newSquare.innerHTML = i;
+        newSquare.innerHTML = newRandomNumber;
 
         // Aggiungo il click al quadrato
         newSquare.addEventListener('click', function () {
@@ -59,15 +61,13 @@ function generateRandomNumber(blacklist, min, max) {
     let randomNumber;
     let validNumber = false;
 
-    while (!validNumber === false) {
+    while (validNumber === false) {
         randomNumber = Math.floor(Math.random() * (max - min) + min);
-        if (!blacklist.indexOf(randomNumber)) {
+        if (!blacklist.includes(randomNumber)) {
             validNumber = true;
         }
+        return randomNumber;
     }
-
-    return randomNumber;
-
 }
 
 
