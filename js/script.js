@@ -34,7 +34,6 @@ playButton.addEventListener('click', function () {
     for (let i = 0; i < 16; i++) {
         const newRandomNumber = generateRandomNumber(blackList, 1, 100);
         blackList.push(newRandomNumber);
-        console.log(newRandomNumber);
     }
 
     console.log(blackList);
