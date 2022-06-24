@@ -18,6 +18,7 @@
 // Richiamo il container della griglia tramite il suo id
 const wrapContainer = document.getElementById('container-wrapper');
 
+// Creo un array vuoto
 const blackList = [];
 
 // L'utente clicca su un bottone che genererà una griglia di gioco quadrata.
@@ -29,10 +30,14 @@ playButton.addEventListener('click', function () {
     // Svuoto il contenitore della griglia
     wrapContainer.innerHTML = '';
 
-    for (let i = 0; i < 15; i++) {
+    // Creo un cliclo per definire le bombe randomicamente
+    for (let i = 0; i < 16; i++) {
         const newRandomNumber = generateRandomNumber(blackList, 1, 100);
+        blackList.push(newRandomNumber);
         console.log(newRandomNumber);
     }
+
+    console.log(blackList);
 
     // Creo un ciclo per generare la griglia
     for (let i = 1; i < 101; i++) {
@@ -43,8 +48,7 @@ playButton.addEventListener('click', function () {
 
         // Aggiungo il click al quadrato
         newSquare.addEventListener('click', function () {
-
-            if () {
+            if (blackList.includes(parseInt(newSquare.innerHTML))) {
                 newSquare.classList.add('bomb');
             } else {
                 newSquare.classList.add('active');
